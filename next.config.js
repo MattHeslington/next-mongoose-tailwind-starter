@@ -1,3 +1,6 @@
 module.exports = {
-  reactStrictMode: true,
+    reactStrictMode: true,
+    images: {
+        domains: ['example.com','randomuser.me','uifaces.co','images.generated.photos'],
+    },
 }
