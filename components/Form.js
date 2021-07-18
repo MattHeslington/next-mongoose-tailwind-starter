@@ -8,6 +8,7 @@ const Form = ({ formId, userForm, newUser = true }) => {
     const contentType = 'application/json'
     const [errors, setErrors] = useState({})
     const [message, setMessage] = useState('')
+    const [loading, setLoading] = useState(false)
 
     // set the state, provided by prop userForm in add.js and based on the user model
     const [form, setForm] = useState({
@@ -19,6 +20,7 @@ const Form = ({ formId, userForm, newUser = true }) => {
 
     /* The PUT method edits an existing entry in the mongodb database. */
     const putData = async (form) => {
+        setLoading(true)
         const { id } = router.query
         try {
             const res = await fetch(`/api/users/${id}`, {
@@ -43,10 +45,14 @@ const Form = ({ formId, userForm, newUser = true }) => {
         catch (error) {
             setMessage('Failed to update pet')
         }
+        finally {
+            setLoading(false)
+        }
     }
 
     /* The POST method adds a new entry in the mongodb database. */
     const postData = async (form) => {
+        setLoading(true)
         try {
             const res = await fetch('/api/users', {
                 method: 'POST',
@@ -63,9 +69,11 @@ const Form = ({ formId, userForm, newUser = true }) => {
             }
             router.push('/')
         }
-
         catch (error) {
             setMessage('Failed to add user')
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -142,7 +150,8 @@ const Form = ({ formId, userForm, newUser = true }) => {
                 onChange={handleChange}
                 className="h-10 border border-gray-300 px-2 w-64"
             />
-            <button type="submit" className="btn">Submit</button>
+            <span className="text-gray-400 text-sm font-light">next.config.js is only set-up to receive image urls from uifaces.com</span>
+            <button type="submit" className="h-10 border border-gray-300 px-4 mt-4 w-64">{!loading ? 'submit' : 'loading'}</button>
             <p>{message}</p>
             <div>
                 {Object.keys(errors).map((err, index) => (
