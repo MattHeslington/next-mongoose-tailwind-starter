@@ -2,6 +2,7 @@ import dbConnect from 'utils/dbConnect'
 import Users from 'models/Users'
 
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from 'components/Layout'
 import Card from 'components/Card'
 

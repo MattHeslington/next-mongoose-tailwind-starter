@@ -1,6 +1,6 @@
 # NextJS, Mongoose & Tailwind Starter
 
-A simple CRUD starter for developing applications using Next, MongoDB and Tailwind.
+A simple CRUD starter for developing applications using NextJS, MongoDB and TailwindCSS.
 
 
 ## Environment Variables

@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Card = ({ id, username, fullname, age, imageurl }) => {
 
     const router = useRouter()
 
     const handleDelete = async () => {
-
         try {
             await fetch(`/api/users/${id}`, {
                 method: 'Delete',
@@ -20,11 +19,14 @@ const Card = ({ id, username, fullname, age, imageurl }) => {
     }
 
     return (
-        <article className="flex flex-row items-center border border-gray-300 px-2 space-x-4 h-10">
+        <article className="flex flex-row items-center border border-gray-300 px-2 space-x-4 h-10 cursor-pointer">
             <Image src={imageurl} alt={`avatar of ${fullname}`} className="w-8 h-8 rounded-full border border-gray-300 object-cover object-center" height={32} width={32}/>
             <span className="w-16">{username}</span>
             <span className="w-32">{fullname}</span>
             <span className="w-10">{age}</span>
+            <Link href="/[id]" as={`/${id}`}>
+                <a><button>view</button></a>
+            </Link>
             <Link href="/[id]/edit" as={`/${id}/edit`}>
                 <button>edit</button>
             </Link>
