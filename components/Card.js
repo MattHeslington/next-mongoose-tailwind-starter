@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Card = ({ id, username, fullname, age, imageurl }) => {
 
@@ -20,7 +21,7 @@ const Card = ({ id, username, fullname, age, imageurl }) => {
 
     return (
         <article className="flex flex-row items-center border border-gray-300 px-2 space-x-4 h-10">
-            <img src={imageurl} alt={`avatar of ${fullname}`} className="w-8 h-8 rounded-full border border-gray-300 object-cover object-center"/>
+            <Image src={imageurl} alt={`avatar of ${fullname}`} className="w-8 h-8 rounded-full border border-gray-300 object-cover object-center"/>
             <span className="w-16">{username}</span>
             <span className="w-32">{fullname}</span>
             <span className="w-10">{age}</span>
